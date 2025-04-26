@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ManyToManyDemo
+  datasource:
+    url: jdbc:mysql://localhost:3306/manytomanydemo?createDatabaseIfNotExist=true
+    username: student
+    password: 1234
+  jpa:
+    generate-ddl: true
