@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>People</title>
-    <link rel="stylesheet" th:href="@{webjars/bootstrap/5.3.5/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.5/dist/css/bootstrap.min.css}">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<div th:replace="fragments/general :: header"></div>
     <h1>People</h1>
     <table class="table table-primary table-striped table-bordered table-hover table-sm">
         <thead>
@@ -24,11 +25,14 @@
             <td th:text="${person.id}"></td>
             <td th:text="${person.name}"></td>
             <td th:text="${person.age}"></td>
-            <td th:text="${person.meetings.size()}"></td>
+            <td>
+                <a class="btn btn-info" th:href="@{/meeting/by_person(id=${person.id})}">meetings</a>
+            </td>
             <td><a class="btn btn-primary" href="/people/edit?id=${person.id}">Edit</a></td>
             <td><a class="btn btn-danger" href="/people/delete?id=${person.id}">Delete</a></td>
         </tbody>
     </table>
+<div th:replace="fragments/general :: confirm"></div>
 <script th:src="@{webjars/bootstrap/5.3.5/dist/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
