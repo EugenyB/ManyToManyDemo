@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <title>People</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.5/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css}">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/general :: header"></div>
-    <h1>People</h1>
+<div th:replace="~{fragments/general :: header}"></div>
+<h1>People</h1>
+<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_person" data-bs-ident="#add"
+   th:attr="data-bs-link=@{/people/add}">
+    <i class="bi bi-plus"></i> Add New Person</a>
+<div class="main-table">
     <table class="table table-primary table-striped table-bordered table-hover table-sm">
         <thead>
         <tr>
@@ -28,11 +33,27 @@
             <td>
                 <a class="btn btn-info" th:href="@{/meeting/by_person(id=${person.id})}">meetings</a>
             </td>
-            <td><a class="btn btn-primary" href="/people/edit?id=${person.id}">Edit</a></td>
-            <td><a class="btn btn-danger" href="/people/delete?id=${person.id}">Delete</a></td>
+            <td>
+                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_person"
+                   th:attr="data-bs-link=@{/people/update},
+                                        data-bs-id=${person.id},
+                                        data-bs-name=${person.name},
+                                        data-bs-age=${person.age}" >
+                    <i class="bi bi-pencil"></i></a>
+            </td>
+            <td>
+                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myconfirm"
+                   th:attr="data-bs-link=@{/people/delete/{id}(id=${person.id})}, data-bs-text = ${person.name} + ' ' + ${person.age}, data-bs-id = ${person.id}">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </td>
         </tbody>
     </table>
-<div th:replace="fragments/general :: confirm"></div>
-<script th:src="@{webjars/bootstrap/5.3.5/dist/js/bootstrap.bundle.min.js}"></script>
+</div>
+<div th:replace="~{fragments/general :: confirm}"></div>
+<div th:replace="~{fragments/general :: edit}"></div>
+<script th:src="@{/js/confirm.js}"></script>
+<script th:src="@{/js/person.js}"></script>
+<script th:src="@{webjars/bootstrap/5.3.5/dist/js/bootstrap.min.js}"></script>
 </body>
 </html>

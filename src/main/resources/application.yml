@@ -1,9 +1,13 @@
 spring:
-  application:
-    name: ManyToManyDemo
-  datasource:
-    url: jdbc:mysql://localhost:3306/manytomanydemo?createDatabaseIfNotExist=true
-    username: student
-    password: 1234
-  jpa:
-    generate-ddl: true
+    application:
+        name: ManyToManyDemo
+    datasource:
+        password: 1234
+        url: jdbc:mysql://localhost:3306/manytomanydemo?createDatabaseIfNotExist=true
+        username: student
+    jpa:
+        generate-ddl: true
+    mvc:
+      hiddenmethod:
+        filter:
+          enabled: true

@@ -6,10 +6,7 @@ import org.example.manytomanydemo.service.MeetingService;
 import org.example.manytomanydemo.service.PersonService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,5 +53,22 @@ public class MainController {
         return "redirect:/meeting/by_person?id=" + pid;
     }
 
+    @GetMapping("/people/delete/{id}")
+    public String deletePerson(@PathVariable Integer id) {
+        personService.deletePerson(id);
+        return "redirect:/people";
+    }
+
+    @PutMapping("/people/update")
+    public String updatePerson(@RequestParam("person_id") Integer id, @RequestParam("person_name") String name, @RequestParam("person_age") Integer age) {
+        personService.update(id, name, age);
+        return "redirect:/people";
+    }
+
+    @PostMapping("/people/add")
+    public String addPerson(@RequestParam("person_name") String name, @RequestParam("person_age") Integer age) {
+        personService.save(name, age);
+        return "redirect:/people";
+    }
 }
 

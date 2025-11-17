@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>People</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.5/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css}">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="fragments/general :: header"></div>
+    <h1>People</h1>
+    <table class="table table-primary table-striped table-bordered table-hover table-sm">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>title</th>
+            <th>description</th>
+            <th>people</th>
+            <th>edit</th>
+            <th>delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="meeting : ${meetings}">
+            <td th:text="${meeting.id}"></td>
+            <td th:text="${meeting.title}"></td>
+            <td th:text="${meeting.description}"></td>
+            <td>
+                <a class="btn btn-info" th:href="@{/people/in_meeting(id=${meeting.id})}">people</a>
+            </td>
+            <td><a class="btn btn-primary" th:href="@{/meeting/edit/{id}(id=${meeting.id})}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{/meeting/delete/{id}(id=${meeting.id})}">Delete</a></td>
+        </tbody>
+    </table>
+<div th:replace="fragments/general :: confirm"></div>
+<script th:src="@{webjars/bootstrap/5.3.5/dist/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -41,7 +41,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a th:method="delete" class="btn btn-danger delete-button">Delete</a>
+                    <a class="btn btn-danger delete-button">Delete</a>
                 </div>
             </div>
         </div>
@@ -49,54 +49,41 @@
     <!-- end confirm -->
 </div>
 <div th:fragment="edit">
-    <!-- add bandit dialog -->
-    <div class="modal fade" id="add_bandit" tabindex="-1" aria-labelledby="staticEditLabel" aria-hidden="true"
+    <!-- Add Person Dialog -->
+    <div class="modal fade" id="add_person" tabindex="-1" aria-labelledby="staticAddLabel" aria-hidden="true"
          data-bs-backdrop="static" data-bs-keyboard="false">
-        <form id="add_bandit_form" method="post" action="/add">
-            <div class="modal-dialog">
-                <div class="modal-content">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="add_person_form" method="post">
+                    <input id="mid" type="hidden" name="_method">
                     <div class="modal-header">
-                        <h1 class="modal-title text-danger fs-4" id="staticEditLabel">Add Bandit</h1>
+                        <h1 class="modal-title fs-2" id="staticAddLabel">Add Person</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body" style="text-align: left;">
-                        <input type="hidden" id="b_id" name="b_id">
+                    <div class="modal-body">
+                        <input type="hidden" id="person_id" name="person_id">
                         <table>
                             <tr>
-                                <td><label for="b_name">Name:</label></td>
-                                <td><input type="text" id="b_name" name="b_name" required></td>
+                                <td><label for="person_name">Person Name:</label></td>
+                                <td><input id="person_name" type="text" name="person_name"></td>
                             </tr>
                             <tr>
-                                <td><label for="b_nickname">Nickname:</label></td>
-                                <td><input type="text" id="b_nickname" name="b_nickname" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="b_birthday">Birthday:</label></td>
-                                <td><input type="date" id="b_birthday" name="b_birthday" ></td>
-                            </tr>
-                            <tr>
-                                <td><label for="b_gang">Gang:</label></td>
-                                <td><input type="text" id="b_gang" name="b_gang"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="b_crimetype">Crime Type:</label></td>
-                                <td><input type="text" id="b_crimetype" name="b_crimetype" ></td>
-                            </tr>
-                            <tr>
-                                <td><label for="b_crimecount">Crime Count:</label></td>
-                                <td><input type="number" id="b_crimecount" name="b_crimecount"></td>
+                                <td><label for="person_age">Person Age:</label></td>
+                                <td><input id="person_age" type="number" name="person_age"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button id="approve_button" type="submit" class="btn btn-success">Add</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button id="approve_person" type="submit" class="btn btn-primary add-button">Add</button>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-    <!-- end add bandit -->
+    <!-- End Add Person Dialog-->
 </div>
 
 <aside>
@@ -105,7 +92,7 @@
 <div class="another">This is another sidebar</div>
 <footer th:fragment="footer">
     <a th:href="@{/fragments}">Fragments Index</a> |
-    <a th:href="@{/markup}">Markup inclussion</a> |
+    <a th:href="@{/markup}">Markup inclusion</a> |
     <a th:href="@{/params}">Fragment params</a> |
     <a th:href="@{/other}">Other</a>
 </footer>

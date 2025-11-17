@@ -59,4 +59,16 @@ public class PersonService {
             repository.save(person);
         });
     }
+
+    public void deletePerson(Integer id) {
+        repository.deleteById(id);
+    }
+
+    public void update(Integer id, String name, Integer age) {
+        repository.findById(id).ifPresent(person -> {
+            person.setName(name);
+            person.setAge(age);
+            repository.save(person);
+        });
+    }
 }
